@@ -76,7 +76,7 @@ to the client even though it shares the machinery.
 
 Sell it where the client's growth depends on other people's customers rather than on
 outbound volume: venues, clinics, studios, hospitality, anything with a referral or
-cross-sell motion. Proven on a Copenhagen venue, first run 2026-09-06.
+cross-sell motion. Proven on AIRE Ancient Baths Copenhagen, first run 2026-09-06.
 
 ## What the client gets
 
@@ -112,7 +112,7 @@ rather than a promise.
 
 | Item | Why it is per-client |
 |---|---|
-| Territories | 8 on the first install: adjacent categories, neighbourhoods, hotels, retail, restaurants, new openings, awards lists, trade bodies. Rewrite for the client's market |
+| Territories | 8 for AIRE: adjacent categories, neighbourhoods, hotels, retail, restaurants, new openings, awards lists, trade bodies. Rewrite for the client's market |
 | The existing-partners list | The seen-list. Without it the first report proposes people they already work with, and credibility is gone in one run |
 | Advertising-protection source | See below. Country-specific and the single hardest part |
 | Do-not-contact list | Client's own, plus anyone who has already said no |
@@ -138,7 +138,7 @@ unverifiable.
 
 ## Set expectations on market size before you sell
 
-Run the arithmetic during the pilot, not after. For one body-care market in greater
+Run the arithmetic during the pilot, not after. For AIRE's body-care market in greater
 Copenhagen, measured across four registry exports:
 
 | | |

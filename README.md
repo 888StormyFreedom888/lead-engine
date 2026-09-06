@@ -1,8 +1,8 @@
 # Lead Engine
 
 A daily pipeline that finds companies worth contacting, verifies each one, and hands a
-person a list to act on. Built for a Copenhagen venue through 2026, then generalised so it
-can be installed for another company in another country and sector.
+person a list to act on. Built for AIRE Ancient Baths Copenhagen through 2026, then
+generalised so it can be installed for another company in another country and sector.
 
 This repository is the documentation. The engine itself is private.
 
@@ -97,3 +97,8 @@ under an engagement.
 ## Contact
 
 Morten Storm, ms@yourkeyz.io
+
+## Rights
+
+Copyright 2026 Morten Storm. All rights reserved. Published here so the approach can be
+read and assessed. It is not licensed for reuse or for implementation by others.
