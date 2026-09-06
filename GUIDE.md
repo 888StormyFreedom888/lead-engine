@@ -66,6 +66,24 @@ Printed at the end of every `run_daily.py` run:
 `Yes` / `No` (set by hand, via `mark_status.py` above, once a reply comes in
 or a decision is made).
 
+## Two traps when installing for a client
+
+Both of these fail silently. Nothing errors, the run completes, and the output is quietly
+wrong, which is the worst shape a bug can take in a system whose whole value is that its
+output can be trusted.
+
+**`seen.csv` carries the previous install's history.** It is the ledger of companies already
+contacted, and a fresh instance must start empty. If it is copied across from another
+install, the new client's first runs skip every company on it without saying so. On the AIRE
+instance it holds 386 companies, which is correct there and would be silent sabotage
+anywhere else. `doctor.py` warns about this; read the warning rather than dismissing it.
+
+**Branchekoder with a leading zero must be strings in `sectors.json`.** Sector matching
+compares the first four characters as text. Written as the number `051000`, JSON stores
+`51000`, which becomes `5100` and never matches the export's `0510`. The export file then
+sits in the folder yielding nothing, and the sector looks empty rather than misconfigured.
+Danish codes beginning with 0 include mining, oil services and agriculture. Quote them.
+
 ---
 
 # Add-on module — partnerships lane
