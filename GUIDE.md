@@ -132,11 +132,23 @@ exports. Commercial property landlords, for example, are mostly holding entities
 staff, which is the opposite of a buyer profile built on companies with employees. Record
 the decision with its reasoning, or it comes back as an apparently unfinished job.
 
-## Two traps when installing for a client
+## Traps when installing for a client
 
 Both of these fail silently. Nothing errors, the run completes, and the output is quietly
 wrong, which is the worst shape a bug can take in a system whose whole value is that its
 output can be trusted.
+
+**The client's existing relationships must be loaded before the first run, and they are not
+the same thing as their partner list.** A formal partners page is easy to ask for. What gets
+missed is the informal side: the supplier they already work with, the venue that already
+resells them, the group where one property out of six has a live arrangement. The system
+finds those, cannot tell them apart from a cold prospect, and presents them as discoveries.
+On the AIRE install a scouting run surfaced a hotel group as a promising lead when the
+client had an active collaboration with them, which the client knew and the files did not.
+Nothing was contacted, but a report that proposes someone's existing partner as a new find
+costs credibility that the next ten good reports have to earn back. Ask for the informal
+list explicitly at scoping, put it in the exclusion file with the reason, and make excluded
+businesses drop out silently at the screen rather than appearing as rejections.
 
 **`seen.csv` carries the previous install's history.** It is the ledger of companies already
 contacted, and a fresh instance must start empty. If it is copied across from another
