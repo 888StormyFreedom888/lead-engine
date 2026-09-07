@@ -66,6 +66,49 @@ Printed at the end of every `run_daily.py` run:
 `Yes` / `No` (set by hand, via `mark_status.py` above, once a reply comes in
 or a decision is made).
 
+## Running the registry exports, in practice
+
+Every install starts with bulk exports from the national company register. This is the part
+that consumes a working session and where the avoidable mistakes live. All of the following
+was learned the hard way on the Danish register (datacvr.virk.dk) in September 2026 and the
+shapes generalise to any equivalent portal.
+
+**Drive it by URL, not by the form.** The Danish portal keeps a free-text search parameter
+in the URL that survives clearing the visible field, and it then filters on top of the
+industry-code selection. The result is zero rows with no explanation, whatever code you
+pick. A URL built with only the parameters you want cannot get into that state. Two hours
+went into this one before the URL was read carefully.
+
+**There is a hard export cap.** 3,000 rows on the Danish register. Above it a dialog opens
+instead of a download. Read the result count before exporting.
+
+**Two ways under the cap, in order.** Filter to active companies only, which typically
+removes 20 to 40% and improves the data because closed companies are discarded downstream
+anyway. If still over, split geographically and let the runner merge the files, since it
+reads every file in the export folder.
+
+**Name the priority geography before you split, and finish it first.** For AIRE that is
+København and Frederiksberg. When a split forces you down to one of the two, the other needs
+its own export in the same session. A sector covered for one core municipality but not the
+other is a silent hole: the file looks complete and nothing downstream flags the gap. Check
+the geography parameter in the URL of every narrowed export before calling it done. This
+caught a real gap in one sector on the night it was written.
+
+**A zero result is not a zero until the page has loaded.** These portals render the filter
+form before the results. Reading the page too early gives a confident "0 results" that is
+simply wrong. Three live industry codes were written off as dead this way in one session.
+Wait, then read.
+
+**Verify codes in the portal's own picker, never from a converted list.** Classification
+systems get renumbered, and a retired code returns zero or a graveyard of dissolved
+companies rather than an error. Search by name, take the code the portal offers, and record
+it.
+
+**Skip a sector deliberately, and write down why.** Not every industry code is worth four
+exports. Commercial property landlords, for example, are mostly holding entities with no
+staff, which is the opposite of a buyer profile built on companies with employees. Record
+the decision with its reasoning, or it comes back as an apparently unfinished job.
+
 ## Two traps when installing for a client
 
 Both of these fail silently. Nothing errors, the run completes, and the output is quietly
