@@ -79,6 +79,17 @@ industry-code selection. The result is zero rows with no explanation, whatever c
 pick. A URL built with only the parameters you want cannot get into that state. Two hours
 went into this one before the URL was read carefully.
 
+**If you automate the export clicks, click by coordinate, not by element handle.** A click
+dispatched at an element reference does not carry a trusted user gesture, and browsers
+require one before a page is allowed to start a download. The button reports a successful
+click and no file arrives, and the browser's download history shows nothing at all: not a
+blocked entry, not an interrupted one. The same button clicked by hand works instantly.
+Locate the button, scroll it into view, then click its screen position. This cost five hours
+across two sessions, and the wrong theories tested on the way were a site rate limit, the
+browser's automatic-downloads permission, tab focus, cookies and session age. If a person's
+own click works and the automated one does not, seconds apart on the same page, it is the
+gesture and nothing else.
+
 **There is a hard export cap.** 3,000 rows on the Danish register. Above it a dialog opens
 instead of a download. Read the result count before exporting.
 
