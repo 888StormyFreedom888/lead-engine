@@ -104,6 +104,18 @@ systems get renumbered, and a retired code returns zero or a graveyard of dissol
 companies rather than an error. Search by name, take the code the portal offers, and record
 it.
 
+**New data in an already-passed sector sits idle until the rotation comes round.** The
+runner works through sectors in a fixed order and keeps its position in `state.json`. Import
+an export for a sector the cycle has already left behind and nothing happens, for as long as
+the rest of the rotation takes. On the AIRE install this showed up the morning after a large
+import: the highest-leverage sector in the whole engine had just gained 1,933 companies, and
+the next run went to the sector it happened to be sitting on instead, with the new data
+roughly two weeks out of reach. Nothing errors, and the sheet looks normal.
+
+After importing into a sector the cycle has passed, set `sector_index` in `state.json` back
+to that sector so the next run picks it up. Nothing is lost by rewinding: the seen-list
+prevents any company being contacted twice, so earlier sectors are simply skipped over.
+
 **Skip a sector deliberately, and write down why.** Not every industry code is worth four
 exports. Commercial property landlords, for example, are mostly holding entities with no
 staff, which is the opposite of a buyer profile built on companies with employees. Record
