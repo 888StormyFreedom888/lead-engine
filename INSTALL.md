@@ -61,6 +61,16 @@ the one everything else waits on, so do it now rather than later.
 Split it into several exports if the site limits the row count. The engine reads
 every file in that folder and merges them.
 
+Tips from real exports:
+
+- The branche search box takes **one code or one word at a time**. Pasting several codes
+  at once returns unrelated results.
+- **Region Hovedstaden** works as well as listing kommuner one by one. It is wider than the
+  engine's area, and the engine drops the rest on import as "outside area".
+- Check that the export carries the **Reklamebeskyttet** column. A file without it is refused.
+- Saving the same search twice is easy. Doubles do no harm, companies are merged by CVR,
+  but they clutter the folder.
+
 Then check what you have:
 
 ```bash

@@ -1,8 +1,8 @@
 # Lead Engine
 
 A daily pipeline that finds companies worth contacting, verifies each one, and hands a
-person a list to act on. Built for AIRE Ancient Baths Copenhagen through 2026, then
-generalised so it can be installed for another company in another country and sector.
+person a list to act on. Built for a Copenhagen venue through 2026, then generalised so it
+can be installed for another company in another country and sector.
 
 This repository is the documentation. The engine itself is private.
 
@@ -10,7 +10,7 @@ This repository is the documentation. The engine itself is private.
 
 Two lanes run on the same machinery.
 
-The first finds companies to sell to. Every weekday it draws from an official registry
+The first finds companies to sell to. Twice every day, morning and night, it draws from an official registry
 export, screens against the configured geography and sectors, confirms each company still
 trades and has a reachable address, removes anyone on the legal do-not-market register, and
 writes a spreadsheet. A separate step drafts the emails. A person sends them.
@@ -23,6 +23,8 @@ counts once they say yes. Same verification, same legal filters.
 
 No message leaves the system, in either lane, at any level of autonomy. It researches,
 verifies and recommends. The operator writes and sends from their own mailbox.
+When the operator does send a batch, it starts with one email they approve, sent from their
+own business address with themselves in CC; the rest of the batch follows only after that.
 
 That is a choice, not a missing feature. Nobody should hand a machine their outbound
 reputation in week one.
@@ -55,7 +57,7 @@ bulk export taken by hand every few months. It carries the protection flag as a 
 the check runs offline against a spreadsheet with no quota and no terms problem. Budget for
 it in every install.
 
-**Two lanes, one API budget.** The weekday sell-to run spent the daily registry quota before
+**Two lanes, one API budget.** The morning sell-to run spent the daily registry quota before
 the partnerships run started, so the partnerships lane could not clear its own legal filter
 and parked every candidate it found. The symptom looked like a quota problem. The cause was
 that both lanes were reaching for registry exports built for entirely different sectors.
@@ -97,6 +99,10 @@ under an engagement.
 ## Contact
 
 Morten Storm, ms@yourkeyz.io
+
+## Permanent block list, in every install
+
+`scripts/blocked.py` ships with every copy of this engine: yours, a client's, one you hand over or sell. It blocks the public sector and regulators (ministries, styrelser, tilsyn, nævn, municipalities, regions, courts, police, the ombudsman, Rigsrevisionen, publicly owned companies) and organisations blocked by name (Forbrugerrådet Tænk, Politiforbundet, Rådet for Digital Sikkerhed, Rådet for sund mad). It is code, not configuration: nothing in `company.json` or `settings.json` turns it off. It is applied on import, when outreach recipients are built, and at send time. `new-company.sh` refuses to create a company without it, and `doctor.py` fails if `test_blocked.py` fails. Never remove or loosen it for a client.
 
 ## Rights
 

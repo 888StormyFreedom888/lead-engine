@@ -70,7 +70,8 @@ Naming is `outreach_<language>.txt`, matching `outreach.language` in `company.js
 - `postnummer_from` / `postnummer_to` / `extra_postnumre` — the target geography.
 - `min_employees` — the size floor. **Single source of truth.** Never hardcode a
   number in a script, agent file or playbook.
-- `leads_per_day` — a floor, not a per-sector target.
+- `leads_per_day` — per run, not per day (two runs a day give twice this). A floor, not a
+  per-sector target.
 - `enrich.contact_page_hints` and the mailbox prefixes — language-specific. A
   non-Danish setup edits these, not code. Swedish would add `om-oss`, `medarbetare`.
 

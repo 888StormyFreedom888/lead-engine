@@ -20,6 +20,11 @@ Or `/leads` from Claude Code — same thing, plus a spoken summary.
 | 2 | Current sector exhausted | Rotation already advanced — run the exact same command again. If the second run also exits 2, the export files hold nothing further; pull a fresh datacvr export |
 | 3 | cvrapi.dk headcount quota hit | Rotation is deliberately **not** advanced. Retry tomorrow — nothing to do today |
 
+**Start runs detached.** Claude Code's Bash tool kills any command after 2 hours,
+background or not, and a killed run writes no sheet. The routines from `make-routines.sh`
+start `run_daily.py` with `nohup` and a log file, then wait for its `EXIT n` line. Do the
+same for any long manual run, for example a large `--count` or `--retry-all`.
+
 ## Mark a lead yes or no
 
 ```bash
